@@ -22,6 +22,8 @@ function Login() {
 
     if (!json.success) {
       alert('Enter valid Credentials')
+      localStorage.setItem('authtoken',json.authtoken)
+      console.log(localStorage.getItem('authtoken'))
       navigate('/')
     }
   }
