@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import Modal from '../Modal'
+import Cart from '../pages/Cart'
 
 function Navbar() {
 
+    const [cartView,setCartView] = useState(false)
     const navigate =useNavigate()
 
     const handleLogout = () => {
@@ -41,7 +44,8 @@ function Navbar() {
                         : 
                           <div>
 
-                                <div className='btn bg-white rounded mx-1 text-success'>My Cart </div>
+                                <div className='btn bg-white rounded mx-1 text-success' onClick={()=>setCartView(true)}>My Cart </div>
+                                {(cartView)?<Modal onClose={()=>setCartView(false)}><Cart /></Modal>: ""}
                                 <div className='btn bg-white rounded mx-1 text-danger' onClick={handleLogout}>Logout </div>
 
                           </div>
