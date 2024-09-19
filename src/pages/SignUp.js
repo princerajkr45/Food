@@ -20,6 +20,7 @@ function SignUp() {
         })
         const json = await response.json()
         console.log(json)
+        alert("User created successfully");
 
         if(!json.success) {
             alert('Enter valid Credentials')
@@ -54,7 +55,7 @@ function SignUp() {
                       <input type="address" className="form-control" name='location' value={creadantials.address} onChange={onChange} />
                   </div>
 
-                  <button type="submit" className="btn btn-primary">Submit</button>
+                  <button type="submit" className="btn btn-primary" >Submit</button>
                   <Link to="/login" className='m-3 btn btn-danger'>Already a user</Link>
               </form>
     </div>
