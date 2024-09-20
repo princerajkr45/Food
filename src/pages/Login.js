@@ -21,13 +21,14 @@ function Login() {
     const json = await response.json()
     console.log(json)
 
-    if (!json.success) {
-      alert('Enter valid Credentials')
+    if (json.success) {
       localStorage.setItem('userEmail', creadantials.email)
       console.log('Stored Email:', localStorage.getItem('userEmail'));
       localStorage.setItem('authtoken',json.authtoken)
       console.log(localStorage.getItem('authtoken'))
       navigate('/')
+    }else{
+      alert('Enter valid Credentials')
     }
   }
 
