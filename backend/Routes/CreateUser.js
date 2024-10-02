@@ -49,14 +49,14 @@ router.post('/loginuser', body('email').isEmail(),
       }
 
       try {
-         const { email } = req.body
+         const { email ,password} = req.body
          const user = await User.findOne({ email: email })
 
          if (!user) {
             return res.status(404).json({ message: 'User not found', success: false });
          }
 
-         const isMatch = await bcrypt.compare(req.body.password, user.password);
+         const isMatch = await bcrypt.compare(password, user.password);
          if (!isMatch) {
             return res.status(401).json({ message: 'Invalid credentials', success: false });  // Wrong password
 
