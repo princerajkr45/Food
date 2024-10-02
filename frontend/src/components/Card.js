@@ -17,9 +17,14 @@ function Card(props) {
 
     const handleAddToCard = async () => {
         let food = []
+        console.log(food);
+        
         for (const item of data) {
             if (item.id === foodItem._id) {
-                food = item;
+                if(item.size === foodItem.size){
+                    food = item;
+                }
+                
 
                 break;
             }
@@ -32,14 +37,14 @@ function Card(props) {
                 return
             }
             else if (food.size !== size) {
-                await dispatch({ type: "ADD", id: foodItem._id, name: foodItem.name, price: finalPrice, qty: qty, size: size, img: props.ImgSrc })
+                await dispatch({ type: "ADD", id: foodItem._id, name: foodItem.name, price: finalPrice, qty: qty, size: size, img: foodItem.img })
                 console.log("Size different so simply ADD one more to the list")
                 return
             }
             return
         }
 
-        await dispatch({ type: "ADD", id: foodItem._id, name: foodItem.name, price: finalPrice, qty: qty, size: size })
+        await dispatch({ type: "ADD", id: foodItem._id, name: foodItem.name, price: finalPrice, qty: qty, size: size, img: foodItem.img })
     }
 
     useEffect(()=>{
@@ -51,11 +56,11 @@ function Card(props) {
         <>
             <div className="card mt-3 " style={{ width: "18rem", maxHeight: "360px" }}>
                 <img src={foodItem.img} alt="..." className='' style={{height:"120px" ,objectFit:"fill"}}/>
-            <div className="card-body ">
+            <div className="card-body text-center">
                 <h5 className="card-title">{foodItem.name}</h5>
                 {/* <p className="card-text">{props.description}</p> */}
-                <div className='container w-100 '>
-                    <select className='m-2 h-100  bg-success' onChange={(e)=> setQty(e.target.value)}>
+                    <div className='container w-100 d-flex justify-content-between'>
+                    <select className='m-2 h-100 ' onChange={(e)=> setQty(e.target.value)}>
                         {Array.from(Array(6), (e, i) => {
                             return (
                                 <option key={i + 1} value={i + 1}>{i + 1}</option>
@@ -64,7 +69,7 @@ function Card(props) {
                         })}
                     </select>
 
-                        <select className='m-2  h-100 bg-success rounded' ref={priceRef} onChange={(e) => setSize(e.target.value)}>
+                        <select className='m-2  h-100  rounded' ref={priceRef} onChange={(e) => setSize(e.target.value)}>
                         {priceOptions.map(([key]) => {
                           return (
                             <option key={key} value={key}>{key}</option>
@@ -76,9 +81,10 @@ function Card(props) {
                     <div className='d-inline h-100 fs-5'>
                             ₹{finalPrice}/-
                     </div>
-                    <hr></hr>
-                        <div className='btn bg-success rounded justify-center mx-1' onClick={handleAddToCard}>Add to Cart</div>
+                    
                 </div>
+                    <hr></hr>
+                    <div className='btn bg-success rounded justify-center mx-1' onClick={handleAddToCard}>Add to Cart</div>
             </div>
         </div>
     </ >

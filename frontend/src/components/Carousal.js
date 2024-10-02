@@ -1,25 +1,29 @@
 import React from 'react'
+import burger from '../assets/burger.avif'
+import pizza from '../assets/pizza.avif'
+import fries from '../assets/fries.avif'
+import momo from '../assets/momo.jpg'
 
-function Carousal() {
+function Carousal({ setSearch }) {
     return (
         <>
             <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel" style={{objectFit:"contain !important"}}>
                 <div class="carousel-inner" id='carousal'>
                     <div class="carousel-caption d-none d-md-block " style={{zIndex:"100"}}>
-                        <form class="d-flex">
-                            <input class="form-control me-2 " type="search" placeholder="Search" aria-label="Search" />
-                            <button class="btn btn-outline-success text-white bg-success" type="submit">Search</button>
+                        <form class="d-flex" onSubmit={(e)=>e.preventDefault()}>
+                            <input class="form-control me-2 " type="search" placeholder="Search" aria-label="Search" onChange={(e)=>setSearch(e.target.value)}/>
+                            
                         </form>
                     </div>
                     
                     <div class="carousel-item active">
-                        <img src="https://picsum.photos/900/500?random=1" class="d-block w-100" alt="Burger" style={{filter:"brightness(30%)"}}/>
+                        <img src={burger} class="d-block w-100" alt="Burger" style={{filter:"brightness(30%)"}}/>
                     </div>
                     <div class="carousel-item">
-                        <img src="https://picsum.photos/900/500?random=2" class="d-block w-100" alt="Momo" />
+                        <img src={pizza} class="d-block w-100" alt="Pizza" />
                     </div>
                     <div class="carousel-item">
-                        <img src="https://picsum.photos/900/500?random=3" class="d-block w-100" alt="Noodles" />
+                        <img src={momo} class="d-block w-100" alt="Momo" />
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
