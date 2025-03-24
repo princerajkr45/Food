@@ -20,7 +20,7 @@ export default function Cart() {
         let userEmail = localStorage.getItem("userEmail");
         console.log('User Email:', userEmail);  
         console.log('Order Data:', data); 
-        let response = await fetch("http://localhost:5000/api/orderData", {
+        let response = await fetch("https://food-zbou.onrender.com/api/orderData", {
             // credentials: 'include',
             // Origin:"http://localhost:3000/login",
             method: 'POST',

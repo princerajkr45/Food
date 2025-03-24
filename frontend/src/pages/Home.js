@@ -11,7 +11,7 @@ function Home() {
   const [foodCategory, setFoodCategory] = useState([])
 
   const loadData = async () => {
-    const response = await fetch('http://localhost:5000/api/foodData', {
+    const response = await fetch('https://food-zbou.onrender.com/api/foodData', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
